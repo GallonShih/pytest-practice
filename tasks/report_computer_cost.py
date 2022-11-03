@@ -16,15 +16,15 @@ class ComputerCostReporting:
     
     def _find_isn_with_maxtc(self, df_nb, df_pc):
         df_isn_with_maxtc = pd.DataFrame()
-        df_nb_maxtc = df_nb.loc[[df_nb.query('Defective == False')['Total Cost'].idxmax()], ['Product Type', 'ISN', 'Total Cost']]
+        df_nb_maxtc = df_nb.loc[[df_nb.query('Defective == True')['Total Cost'].idxmax()], ['Product Type', 'ISN', 'Total Cost']]
         df_isn_with_maxtc = pd.concat([df_isn_with_maxtc, df_nb_maxtc]).reset_index(drop=True)
-        df_pc_maxtc = df_pc.loc[[df_pc.query('Defective == False')['Total Cost'].idxmax()], ['Product Type', 'ISN', 'Total Cost']]
+        df_pc_maxtc = df_pc.loc[[df_pc.query('Defective == True')['Total Cost'].idxmax()], ['Product Type', 'ISN', 'Total Cost']]
         df_isn_with_maxtc = pd.concat([df_isn_with_maxtc, df_pc_maxtc]).reset_index(drop=True)
         return df_isn_with_maxtc
     
     def _total_cost_desc(self, df_nb, df_pc):
-        df_nb_sub = df_nb.query('Defective == False')
-        df_pc_sub = df_pc.query('Defective == False')
+        df_nb_sub = df_nb.query('Defective == True')
+        df_pc_sub = df_pc.query('Defective == True')
         df_cost_desc = pd.DataFrame({
             'Product Type': ['NB', 'PC'],
             'total_cost_max': [df_nb_sub['Total Cost'].max(), df_pc_sub['Total Cost'].max()],
@@ -34,7 +34,7 @@ class ComputerCostReporting:
         return df_cost_desc
     
     def _battery_cost_desc(self, df_nb):
-        df_nb_sub = df_nb.query('Defective == False')
+        df_nb_sub = df_nb.query('Defective == True')
         df_bat_cost_desc = pd.DataFrame({
             'Product Type': ['NB'],
             'battery_cost_max': [df_nb_sub['Battery Cost'].max()],
