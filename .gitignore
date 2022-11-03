@@ -1,0 +1,21 @@
+# Byte-compiled
+__pycache__/
+
+# Distribution / packaging
+include
+Lib
+Scripts
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+pytest-env/
+
+# pytest
+.pytest_cache/
