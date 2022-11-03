@@ -1,5 +1,6 @@
-from tasks.task1 import ETL
+from tasks.report_computer_cost import ComputerCostReporting
 
-etl = ETL(a=4, b=2)
-etl.plus()
-etl.minus()
+etl = ComputerCostReporting(nb_filepath='./data/NB.csv',
+                            pc_filepath='./data/PC.csv',
+                            output_folder='./')
+etl.execute()
