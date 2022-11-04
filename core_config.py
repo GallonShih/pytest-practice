@@ -6,7 +6,6 @@ class Settings:
     # logger conf file path
     LOGGER_CONF_PATH = "./logger_conf.json"
     LOGGER_CONF = None
-    LOGGER_LEVEL = "INFO"
 
 _settings = Settings()
 with open(_settings.LOGGER_CONF_PATH, 'r') as f:

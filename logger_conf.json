@@ -15,13 +15,6 @@
             "stream": "ext://sys.stdout"
         }
     },
-    "loggers": {
-        "my_module": {
-            "level": "INFO",
-            "handlers": ["console"],
-            "propagate": "no"
-        }
-    },
     "root": {
         "level": "DEBUG",
         "handlers": ["console"]
