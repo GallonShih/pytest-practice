@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "simple": {
+            "format": "%(asctime)s.%(msecs)03d %(name)s %(levelname)s %(message)s",
+            "datefmt":"%Y-%m-%d %H:%M:%S"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": "DEBUG",
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
+        }
+    },
+    "loggers": {
+        "my_module": {
+            "level": "INFO",
+            "handlers": ["console"],
+            "propagate": "no"
+        }
+    },
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console"]
+    }
+}
