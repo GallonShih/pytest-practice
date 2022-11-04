@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pytest
 import pandas as pd
 from tasks.report_computer_cost import ComputerCostReporting
@@ -54,3 +56,11 @@ def test_battery_cost_desc(nb_data):
         'battery_cost_avg': [12.]
     })
     pd.testing.assert_frame_equal(etl._battery_cost_desc(df_nb=nb_data), df_bat_cost_desc)
+
+def test_execute(mocker, tmp_path, nb_data, pc_data):
+    d = tmp_path / "sub"
+    d.mkdir()
+    etl = ComputerCostReporting(nb_filepath='NB.csv', pc_filepath='PC.csv', output_folder=d)
+    mocker.patch("tasks.report_computer_cost.ComputerCostReporting._load_data", return_value=(nb_data, pc_data))
+    etl.execute()
+    assert len(list(d.iterdir())) == 1
